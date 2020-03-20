@@ -24,13 +24,13 @@ import org.apache.aries.blueprint.plugin.model.TransactionalDef;
 import org.apache.aries.blueprint.plugin.test.MyBean1;
 import org.apache.aries.blueprint.plugin.test.MyBean5;
 import org.apache.aries.blueprint.plugin.test.MyProduced;
-import org.apache.aries.blueprint.plugin.test.interfaces.ServiceA;
-import org.apache.aries.blueprint.plugin.test.interfaces.ServiceB;
-import org.apache.aries.blueprint.plugin.test.interfaces.ServiceD;
 import org.apache.aries.blueprint.plugin.test.bean.BasicBean;
 import org.apache.aries.blueprint.plugin.test.bean.BeanWithCallbackMethods;
 import org.apache.aries.blueprint.plugin.test.bean.NamedBean;
 import org.apache.aries.blueprint.plugin.test.bean.SimpleProducedBean;
+import org.apache.aries.blueprint.plugin.test.interfaces.ServiceA;
+import org.apache.aries.blueprint.plugin.test.interfaces.ServiceB;
+import org.apache.aries.blueprint.plugin.test.interfaces.ServiceD;
 import org.apache.aries.blueprint.plugin.test.reference.BeanWithReferences;
 import org.apache.aries.blueprint.plugin.test.reference.Ref1;
 import org.apache.aries.blueprint.plugin.test.reference.Ref2;
@@ -65,9 +65,13 @@ import javax.xml.xpath.XPathFactory;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.*;
-import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import static org.apache.aries.blueprint.plugin.FilteredClassFinder.findClasses;
 import static org.junit.Assert.assertEquals;
@@ -272,7 +276,6 @@ public class BlueprintFileWriterTest {
         assertXpathEquals(bean1, "@class", "org.apache.aries.blueprint.plugin.test.MyProduced");
         assertXpathEquals(bean1, "@factory-ref", "myFactoryNamedBean");
         assertXpathEquals(bean1, "@factory-method", "createBean1");
-        assertXpathEquals(bean1, "@scope", "prototype");
 
         Node bean2 = getBeanById("produced2");
         assertXpathEquals(bean1, "@class", "org.apache.aries.blueprint.plugin.test.MyProduced");
@@ -1387,6 +1390,7 @@ public class BlueprintFileWriterTest {
         Node ref1ForCons = getReferenceListById("ref3ListForProduces");
         assertXpathEquals(ref1ForCons, "@interface", Ref3.class.getName());
     }
+
     private void assertXpathDoesNotExist(Node node, String xpathExpression) throws XPathExpressionException {
         assertXpathEquals(node, "count(" + xpathExpression + ")", "0");
     }

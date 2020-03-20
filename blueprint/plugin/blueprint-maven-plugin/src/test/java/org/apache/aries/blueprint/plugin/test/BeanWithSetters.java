@@ -18,20 +18,17 @@
  */
 package org.apache.aries.blueprint.plugin.test;
 
+import org.apache.aries.blueprint.annotation.bean.Activation;
+import org.apache.aries.blueprint.annotation.bean.Bean;
+import org.apache.aries.blueprint.annotation.config.ConfigProperty;
 import org.apache.aries.blueprint.plugin.test.interfaces.ServiceA;
 import org.apache.aries.blueprint.plugin.test.interfaces.ServiceB;
 import org.ops4j.pax.cdi.api.OsgiService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Lazy;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.inject.Singleton;
 
-@Singleton
-@Lazy(false)
+@Bean(activation = Activation.EAGER)
 public class BeanWithSetters {
 
     @Inject
@@ -40,11 +37,11 @@ public class BeanWithSetters {
     }
 
     @Inject
-    @Qualifier("my2")
+    @Named("my2")
     public void setServiceA2(ServiceA serviceA2) {
     }
 
-    @Autowired
+    @Inject
     public void setServiceB(ServiceB serviceB) {
     }
 
@@ -64,15 +61,15 @@ public class BeanWithSetters {
     public void setIhaveMoreThenOneParameter(String a, String b) {
     }
 
-    @Value("test")
+    @ConfigProperty("test")
     public void setIOnlyHaveSetPrefixValue() {
     }
 
-    @Value("test")
+    @ConfigProperty("test")
     public void setIhaveMoreThenOneParameterValue(String a, String b) {
     }
 
-    @Value("test")
+    @ConfigProperty("test")
     public void setMyValue(String v) {
     }
 

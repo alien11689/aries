@@ -6,9 +6,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -18,18 +18,18 @@
  */
 package org.apache.aries.blueprint.plugin.test;
 
+import org.apache.aries.blueprint.annotation.config.ConfigProperty;
+import org.apache.aries.blueprint.plugin.test.interfaces.ServiceA;
+import org.ops4j.pax.cdi.api.OsgiServiceProvider;
+
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import org.apache.aries.blueprint.plugin.test.interfaces.ServiceA;
-import org.ops4j.pax.cdi.api.OsgiServiceProvider;
-import org.springframework.beans.factory.annotation.Value;
-
 @Singleton
 @Named("my2")
-@OsgiServiceProvider(classes={ServiceA.class})
+@OsgiServiceProvider(classes = {ServiceA.class})
 public class ServiceAImpl2 implements ServiceA {
-    @Value("${url:http://default}")
+    @ConfigProperty("${url:http://default}")
     String url;
 
 }

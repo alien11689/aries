@@ -18,22 +18,19 @@
  */
 package org.apache.aries.blueprint.plugin.test;
 
+import org.apache.aries.blueprint.annotation.bean.Bean;
 import org.osgi.framework.BundleContext;
-import org.springframework.context.annotation.DependsOn;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 
-@Component
-@DependsOn({"myBean5", "myBean6"})
+@Bean(dependsOn = {"myBean5", "myBean6"})
 public class MyBean4 {
 
     @Inject
     BundleContext bundleContext;
 
-    @Transactional(propagation = Propagation.SUPPORTS)
+    @Transactional(Transactional.TxType.SUPPORTS)
     public void txWithoutClassAnnotation() {
 
     }

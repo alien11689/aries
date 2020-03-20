@@ -18,8 +18,8 @@
  */
 package org.apache.aries.blueprint.plugin.test;
 
-import org.springframework.context.annotation.DependsOn;
-import org.springframework.context.annotation.Lazy;
+import org.apache.aries.blueprint.annotation.bean.Activation;
+import org.apache.aries.blueprint.annotation.bean.Bean;
 
 import javax.enterprise.inject.Produces;
 import javax.inject.Named;
@@ -34,18 +34,12 @@ public class MyFactoryNamedBean {
         return new MyProduced("My message");
     }
 
-    @Produces
-    @Named("produced2")
-    @Singleton
-    @DependsOn("produced1")
+    @Bean(dependsOn = "produced1", id = "produced2")
     public MyProduced createBean2() {
         return new MyProduced("My message");
     }
 
-    @Produces
-    @Named("producedEager")
-    @Singleton
-    @Lazy(false)
+    @Bean(id = "producedEager", activation = Activation.EAGER)
     public MyProduced createBean2AsEager() {
         return new MyProduced("My message");
     }

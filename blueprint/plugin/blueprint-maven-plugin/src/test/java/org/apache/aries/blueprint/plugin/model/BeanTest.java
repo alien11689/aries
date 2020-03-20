@@ -22,7 +22,6 @@ import com.google.common.collect.Sets;
 import org.apache.aries.blueprint.plugin.BlueprintConfigurationImpl;
 import org.apache.aries.blueprint.plugin.bad.BadBean1;
 import org.apache.aries.blueprint.plugin.bad.BadBean2;
-import org.apache.aries.blueprint.plugin.bad.BadBean3;
 import org.apache.aries.blueprint.plugin.bad.BadFieldBean1;
 import org.apache.aries.blueprint.plugin.bad.BadFieldBean2;
 import org.apache.aries.blueprint.plugin.bad.BadFieldBean3;
@@ -150,11 +149,6 @@ public class BeanTest {
     @Test(expected = IllegalArgumentException.class)
     public void testMultipleDestroyMethods() {
         new Bean(BadBean2.class, blueprint);
-    }
-
-    @Test(expected = UnsupportedOperationException.class)
-    public void testSpringNestedTransactionNotSupported() {
-        new Bean(BadBean3.class, blueprint);
     }
 
     @Test(expected = UnsupportedOperationException.class)

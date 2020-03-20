@@ -6,9 +6,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -18,17 +18,15 @@
  */
 package org.apache.aries.blueprint.plugin.test;
 
-import javax.inject.Inject;
-import javax.inject.Named;
-
 import org.apache.aries.blueprint.plugin.test.interfaces.ServiceA;
 import org.apache.aries.blueprint.plugin.test.interfaces.ServiceB;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
+
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.transaction.Transactional;
 
 @Named
-@Transactional(propagation=Propagation.REQUIRES_NEW)
+@Transactional(Transactional.TxType.REQUIRES_NEW)
 public class MyBean3 {
 
     @Inject
@@ -36,7 +34,7 @@ public class MyBean3 {
     ServiceA serviceA1;
 
     @Inject
-    @Qualifier("my2")
+    @Named("my2")
     ServiceA serviceA2;
 
     @Inject
@@ -49,27 +47,27 @@ public class MyBean3 {
     @Inject
     MyProduced myProduced;
 
-    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    @Transactional(Transactional.TxType.NOT_SUPPORTED)
     public void txNotSupported() {
     }
 
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional(Transactional.TxType.MANDATORY)
     public void txMandatory() {
     }
 
-    @Transactional(propagation = Propagation.NEVER)
+    @Transactional(Transactional.TxType.NEVER)
     public void txNever() {
     }
 
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional(Transactional.TxType.REQUIRED)
     public void txRequired() {
     }
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional(Transactional.TxType.REQUIRES_NEW)
     public void txRequiresNew() {
     }
 
-    @Transactional(propagation = Propagation.SUPPORTS)
+    @Transactional(Transactional.TxType.SUPPORTS)
     public void txSupports() {
     }
 }

@@ -18,10 +18,10 @@
  */
 package org.apache.aries.blueprint.plugin.test;
 
+import org.apache.aries.blueprint.annotation.config.ConfigProperty;
 import org.apache.aries.blueprint.plugin.test.interfaces.ServiceB;
 import org.apache.aries.blueprint.plugin.test.interfaces.ServiceC;
 import org.ops4j.pax.cdi.api.OsgiService;
-import org.springframework.beans.factory.annotation.Value;
 
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
@@ -30,7 +30,7 @@ import javax.inject.Singleton;
 
 @Singleton
 public class MyFactoryBean {
-    
+
     @Inject
     ServiceB serviceB;
 
@@ -40,7 +40,7 @@ public class MyFactoryBean {
     }
 
     @Produces
-    public MyProducedWithConstructor createBeanWithParameters(MyBean1 myBean1, @Value("100") int bla, @OsgiService(filter = "myRef") @Named("ser1") ServiceC myReference) {
+    public MyProducedWithConstructor createBeanWithParameters(MyBean1 myBean1, @ConfigProperty("100") int bla, @OsgiService(filter = "myRef") @Named("ser1") ServiceC myReference) {
         return new MyProducedWithConstructor(null);
     }
 }

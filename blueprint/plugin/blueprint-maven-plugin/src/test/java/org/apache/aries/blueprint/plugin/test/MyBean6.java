@@ -18,14 +18,14 @@
  */
 package org.apache.aries.blueprint.plugin.test;
 
+import org.apache.aries.blueprint.annotation.bean.Bean;
 import org.apache.aries.blueprint.plugin.test.interfaces.ServiceA;
-import org.springframework.context.annotation.DependsOn;
 
 import javax.inject.Named;
 import javax.inject.Singleton;
 
 @Singleton
-@DependsOn
+@Bean(dependsOn = {})
 public class MyBean6 {
 
     public MyBean6(@Named("my2") ServiceA serviceA1) {

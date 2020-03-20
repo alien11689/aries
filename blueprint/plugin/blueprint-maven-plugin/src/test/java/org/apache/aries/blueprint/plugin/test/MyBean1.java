@@ -6,9 +6,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -18,16 +18,15 @@
  */
 package org.apache.aries.blueprint.plugin.test;
 
-import org.springframework.context.annotation.Lazy;
+import org.apache.aries.blueprint.annotation.bean.Activation;
+import org.apache.aries.blueprint.annotation.bean.Bean;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Singleton;
 import javax.transaction.Transactional;
 import javax.transaction.Transactional.TxType;
 
-@Singleton
-@Transactional(value=TxType.REQUIRES_NEW)
-@Lazy
+@Transactional(value = TxType.REQUIRES_NEW)
+@Bean(activation = Activation.LAZY)
 public class MyBean1 extends ParentBean {
 
     public void overridenInit() {
